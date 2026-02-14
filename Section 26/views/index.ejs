@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blogger - Home</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container center">
+    <h1 class="app-title">Welcome to <span>Blogger</span></h1>
+
+    <form action="/feed" method="POST" class="form">
+      <div class="form-group">
+        <label for="username">Enter your name:</label>
+        <input 
+          type="text" 
+          id="username" 
+          name="username" 
+          placeholder="Your name"
+          required
+        >
+      </div>
+
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

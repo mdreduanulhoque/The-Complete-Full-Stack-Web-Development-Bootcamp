@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blogger - Feed</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h2 class="section-title">Write what's on your mind...</h2>
+
+    <form action="/post" method="POST" class="form">
+      <input type="hidden" name="username" value="<%= username %>">
+
+      <div class="form-group">
+        <textarea 
+          name="content" 
+          rows="5" 
+          placeholder="Write your post here..."
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn">Submit</button>
+    </form>
+
+    <h2 class="section-title">Previous Posts</h2>
+
+    <div class="post-list">
+      <% posts.forEach(function(post){ %>
+        <div class="post-card">
+          <h3 class="post-author"><%= post.username %></h3>
+          <p class="post-preview">
+            <%= post.content.substring(0, 100) %>...
+          </p>
+          <a href="/post/<%= post.id %>" class="link">Read more</a>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</body>
+</html>
