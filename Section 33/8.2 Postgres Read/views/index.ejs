@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flag Quiz</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body id="app">
+  <form class="container" action="/submit" method="post">
+    <div class="horizontal-container">
+      <h3>
+        Total Score:
+        <span id="score">
+          <%= locals.totalScore ? totalScore : "0" %>
+        </span>
+      </h3>
+
+    </div>
+
+    <h1 id="countryFlag">
+      <%=question.flag %>
+    </h1>
+    <div class="answer-container">
+      <input type="text" name="answer" id="userInput" placeholder="Name the country" autofocus autocomplete="off">
+
+    </div>
+    <button type="submit">SUBMIT<% if(locals.wasCorrect){ %>
+        <span class="checkmark">✔</span>
+        <% } else if (locals.wasCorrect===false) { %>
+          <span class="cross" id="error">✖</span>
+          <% } %>
+    </button>
+
+  </form>
+  <script>
+  // Use a raw check for the boolean value
+  var wasCorrect = "<%= locals.wasCorrect %>";
+  
+  // If wasCorrect is explicitly 'false' (not null/undefined), it's Game Over
+  if (wasCorrect === "false") {
+    // We use totalScore here because it was passed from the router
+    alert('Game over! Final score: <%= locals.totalScore %>');
+    document.getElementById("app").innerHTML = `
+      <div class="container">
+        <h1>Game Over!</h1>
+        <p>Your score: <%= locals.totalScore %></p>
+        <a href="/" class="restart-button" style="text-decoration:none; padding:10px; background:#eee; border-radius:5px;">Restart Game</a>
+      </div>
+    `;
+  }
+</script>
+</body>
+
+</html>
